@@ -1,29 +1,33 @@
 from decimal import Decimal, getcontext
 from os import system
 
+# set the precision of decimal arithmetic.
+precision = 5000
+getcontext().prec = precision
+
 # set the size of the cmd window.
-system("mode con cols=200 lines=20")
+system("mode con cols=200 lines=30")
 
 print('Larger term would have a more accurate result.')
-term = int(input("Input the terms: "))
-# set the precision of decimal arithmetic.
-getcontext().prec = 1000
+print(f'Current precision: {precision} digit(s)')
+
+terms = int(input("Input the terms: "))
 
 n = Decimal('1') / Decimal('2')
 content = Decimal('0')
+tri_area = Decimal('3') ** Decimal('0.5') / Decimal('8')
+arrg = Decimal('2') / Decimal('3')
+fct = Decimal('1')
 
-for i in range(0, term):
-    result = Decimal('1')
-    fct = Decimal('1')
+for term in range(0, terms):
 
     # n*(n-1)*(n-2)...
-    for j in range(0, i):
-        result *= n - j
+    arrg = arrg * (n - term + 1)
+    result = arrg
 
     # factorial
-    if result != 0:
-        for k in range(1, i + 1):
-            fct *= k
+    if term != 0:
+        fct *= term
 
     result /= fct
 
@@ -32,15 +36,13 @@ for i in range(0, term):
     elif result > 0:
         result = -result
 
-    odd = 2 * (i + 1) - 1
+    odd = 2 * (term + 1) - 1
 
     result /= odd
     result /= 2**odd
 
-
     content += result
 
-    tri_area = Decimal('3') ** Decimal('0.5') / Decimal('8')
-    print(i, ' ', Decimal('12') * (content - tri_area))
+    print(term, ' ', Decimal('12') * (content - tri_area))
 
 input("Press any key to exit...")
