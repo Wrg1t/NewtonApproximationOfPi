@@ -8,8 +8,8 @@ getcontext().prec = precision
 # set the size of the cmd window.
 system("mode con cols=200 lines=30")
 
-print('Larger term would have a more accurate result.')
 print(f'Current precision: {precision} digit(s)')
+print('More terms would have a more accurate result.')
 
 terms = int(input("Input the terms: "))
 
