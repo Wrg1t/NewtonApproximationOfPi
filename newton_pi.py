@@ -45,4 +45,4 @@ for term in range(0, terms):
 
     print(term, ' ', Decimal('12') * (content - tri_area))
 
-input("Press any key to exit...")
+system('pause')
