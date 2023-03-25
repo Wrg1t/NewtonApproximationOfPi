@@ -6,7 +6,8 @@ PRECISION = 10000
 getcontext().prec = PRECISION
 
 # Set the size of the cmd window.
-os.system("mode con cols=200 lines=53")
+if os.name == 'nt':
+    os.system("mode con cols=200 lines=53")
 
 print(f'Current precision: {PRECISION} digit(s)')
 print('More terms would have a more accurate result.')
@@ -19,8 +20,6 @@ triangle_area = Decimal('3') ** Decimal('0.5') / Decimal('8')  # Area of a 30-60
 binomial_coeff = Decimal('2') / Decimal('3')  # Initial value for binomial coefficient.
 factorial = Decimal('1')  # Initial value for factorial.
 prev_pi = Decimal('0')
-
-print("\033[1;1H", end="", flush=True)
 
 for term_index in range(num_terms):
     # Calculate the next term in the approximation using the binomial theorem.
